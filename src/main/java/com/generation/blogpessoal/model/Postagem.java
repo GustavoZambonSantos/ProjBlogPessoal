@@ -1,7 +1,5 @@
 package com.generation.blogpessoal.model;
 
-
-
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,26 +16,24 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="tb_postagens")
+@Table(name = "tb_postagens")
 public class Postagem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "Este atributo é de preenchimento obrigatório")
-	@Size(min = 5, max = 100,message="Este atributo tem que ter no minimo 5 caracteres e no máximo 100 caracteres")
+	@Size(min = 5, max = 100, message = "Este atributo tem que ter no minimo 5 caracteres e no máximo 100 caracteres")
 	private String titulo;
-	
+
 	@NotBlank(message = "Este atributo é de preenchimento obrigatório")
-	@Size(min = 10, max = 1000,message="Este atributo tem que ter no minimo 10 caracteres e no máximo 1000 caracteres")
+	@Size(min = 10, max = 1000, message = "Este atributo tem que ter no minimo 10 caracteres e no máximo 1000 caracteres")
 	private String texto;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime data;
-	
-	
-	
+
 	public Tema getTema() {
 		return tema;
 	}
@@ -49,8 +45,19 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-	
-	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+
 	public Long getId() {
 		return id;
 	}
@@ -82,6 +89,5 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
-	
+
 }
