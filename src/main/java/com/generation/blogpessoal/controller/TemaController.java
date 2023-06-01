@@ -25,7 +25,7 @@ import com.generation.blogpessoal.repository.TemaRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/temas")
+@RequestMapping("/tema")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemaController {
 
